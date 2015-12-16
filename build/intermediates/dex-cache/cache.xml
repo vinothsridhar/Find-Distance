@@ -1,2 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
-<items version="2" />
+<items version="2" >
+
+    <item
+        jar="/home/sridhar/AndroidStudioProjects/FindDistance/app/build/intermediates/incremental-classes/debug/classes.jar"
+        jumboMode="false"
+        revision="21.1.2"
+        sha1="9fb31c8f68aec83f43256d6a695f7da815da4b05">
+        <dex dex="/home/sridhar/AndroidStudioProjects/FindDistance/app/build/intermediates/pre-dexed/debug/classes_ac40d8c218ee46797e9b0962c89189e85c021cfc.jar" />
+    </item>
+
+</items>

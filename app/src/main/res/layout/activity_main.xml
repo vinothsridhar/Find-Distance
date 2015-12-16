@@ -89,7 +89,9 @@
         android:layout_height="wrap_content"
         android:orientation="vertical"
         android:background="#fff"
-        android:layout_alignParentBottom="true">
+        android:layout_alignParentBottom="true"
+        android:clickable="true"
+        android:onClick="distanceLayoutClicked">
         
         <TextView
             android:id="@+id/distanceTextView"

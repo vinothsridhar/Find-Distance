@@ -166,6 +166,12 @@ public class MainActivity extends BaseMapActivity {
         }
     }
 
+    public void distanceLayoutClicked(View v) {
+        Intent i = new Intent(MainActivity.this, PathActivity.class);
+        i.putExtra("DIRECTION", directionsObj);
+        startActivity(i);
+    }
+
     private void findDirection() {
         distanceLayout.setVisibility(View.GONE);
         showProgressDialog();

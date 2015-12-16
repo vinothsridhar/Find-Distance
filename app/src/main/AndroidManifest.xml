@@ -42,7 +42,10 @@
         </activity>
         <activity
             android:name=".SelectPinPointActivity"
-            android:label="@string/title_activity_select_pin_point"></activity>
+            android:label="@string/title_activity_select_pin_point" />
+        <activity
+            android:name=".PathActivity"
+            android:label="@string/title_activity_path"></activity>
     </application>
 
 </manifest>
