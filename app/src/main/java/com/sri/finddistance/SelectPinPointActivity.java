@@ -27,7 +27,7 @@ public class SelectPinPointActivity extends BaseMapActivity {
     }
 
     private void initUI() {
-
+        getSupportActionBar().setSubtitle("Pan & zoom map under pin");
     }
 
     private void initComponents() {

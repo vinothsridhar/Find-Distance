@@ -2,5 +2,5 @@
     <string name="app_name">FindDistance</string>
     <string name="title_activity_main">MainActivity</string>
     <string name="google_maps_demo_api_key">AIzaSyDttVBoIbULFfVZelRPwBhEOUyq0_-IGws</string>
-    <string name="title_activity_select_pin_point">SelectPinPointActivity</string>
+    <string name="title_activity_select_pin_point">Select Location Using Pin</string>
 </resources>

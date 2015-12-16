@@ -9,6 +9,7 @@ import android.widget.TextView;
 
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
+import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.LatLngBounds;
 import com.google.android.gms.maps.model.Marker;
@@ -89,6 +90,14 @@ public class MainActivity extends BaseMapActivity {
 
     private void resetMap() {
         //Focus Bangalore
+        if (fromMarker != null) {
+            fromMarker.remove();
+            fromMarker = null;
+        }
+        if (toMarker != null) {
+            toMarker.remove();
+            toMarker = null;
+        }
         map.animateCamera(CameraUpdateFactory.newLatLngZoom(MapUtils.BANGALORE_LATLNG, 10f));
     }
 
@@ -250,8 +259,39 @@ public class MainActivity extends BaseMapActivity {
                 } else if (destLatLng != null) {
                     destLocation.setText(destLatLng.latitude + ", " + destLatLng.longitude);
                 }
+                updateMarkers();
             }
         });
+    }
+
+    private void updateMarkers() {
+        //from marker
+        if (srcLatLng != null) {
+            MarkerOptions fromMarkerOptions = new MarkerOptions();
+            fromMarkerOptions.position(srcLatLng);
+            fromMarkerOptions.title("FROM");
+            fromMarkerOptions.icon(BitmapDescriptorFactory.fromResource(R.drawable.marker_icon));
+            fromMarker = map.addMarker(fromMarkerOptions);
+        }
+
+        //to marker
+        if (destLatLng != null) {
+            MarkerOptions toMarkerOptions = new MarkerOptions();
+            toMarkerOptions.position(destLatLng);
+            toMarkerOptions.title("TO");
+            toMarkerOptions.icon(BitmapDescriptorFactory.fromResource(R.drawable.marker_icon_to));
+            toMarker = map.addMarker(toMarkerOptions);
+        }
+
+        if (srcLatLng != null && destLatLng != null) {
+            LatLngBounds.Builder builder = new LatLngBounds.Builder();
+            builder.include(srcLatLng);
+            builder.include(destLatLng);
+            LatLngBounds bounds = builder.build();
+
+//            map.animateCamera(CameraUpdateFactory.newLatLngBounds(bounds, -50));
+            map.animateCamera(CameraUpdateFactory.newLatLngBounds(bounds, 250, 250, 10));
+        }
     }
 
     private void updateDistance(final String distance) {
@@ -260,28 +300,7 @@ public class MainActivity extends BaseMapActivity {
             public void run() {
                 distanceTextView.setText(distance.toUpperCase());
                 distanceLayout.setVisibility(View.VISIBLE);
-
-                //from marker
-                MarkerOptions fromMarkerOptions = new MarkerOptions();
-                fromMarkerOptions.position(srcLatLng);
-                fromMarkerOptions.title("FROM");
-                fromMarker = map.addMarker(fromMarkerOptions);
-                fromMarker.showInfoWindow();
-
-                //to marker
-                MarkerOptions toMarkerOptions = new MarkerOptions();
-                toMarkerOptions.position(destLatLng);
-                toMarkerOptions.title("TO");
-                toMarker = map.addMarker(toMarkerOptions);
-                toMarker.showInfoWindow();
-
-                LatLngBounds.Builder builder = new LatLngBounds.Builder();
-                builder.include(srcLatLng);
-                builder.include(destLatLng);
-                LatLngBounds bounds = builder.build();
-
-//                map.animateCamera(CameraUpdateFactory.newLatLngBounds(bounds, -50));
-                map.animateCamera(CameraUpdateFactory.newLatLngBounds(bounds, 150, 150, 10));
+                updateMarkers();
             }
         });
     }
