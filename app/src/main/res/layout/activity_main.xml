@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:id="@+id/directonsLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:background="#fff"
+        android:padding="5dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="35dp"
+            android:background="#ccc"
+            android:padding="5dp"
+            android:layout_margin="3dp"
+            android:orientation="horizontal"
+            android:onClick="srcLocationClicked">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:lines="1"
+                android:gravity="center_vertical"
+                android:textSize="10sp"
+                android:textColor="#000"
+                android:text="FROM   "/>
+
+            <TextView
+                android:id="@+id/srcLocation"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:lines="1"
+                android:gravity="center_vertical"
+                android:textSize="14sp"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="35dp"
+            android:background="#ccc"
+            android:padding="5dp"
+            android:layout_margin="3dp"
+            android:clickable="true"
+            android:onClick="destLocationClicked"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:lines="1"
+                android:gravity="center_vertical"
+                android:textSize="10sp"
+                android:textColor="#000"
+                android:text="TO   "/>
+
+            <TextView
+                android:id="@+id/destLocation"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:lines="1"
+                android:gravity="center_vertical"
+                android:textSize="14sp"/>
+
+        </LinearLayout>
+
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Get Distance"
+            android:onClick="getDistanceClicked"/>
+    </LinearLayout>
+
+    <fragment
+        android:id="@+id/mapView"
+        android:name="com.sri.finddistance.MapFragment"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/directonsLayout"
+        android:layout_above="@+id/distanceLayout"/>
+
+    <LinearLayout
+        android:id="@+id/distanceLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:background="#fff"
+        android:layout_alignParentBottom="true">
+        
+        <TextView
+            android:id="@+id/distanceTextView"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:gravity="center"
+            android:textSize="20dp"/>
+        
+    </LinearLayout>
+
+</RelativeLayout>
